@@ -37,7 +37,8 @@
   http://www.opentom.org/Mkttimage
 */
 
-#include <netinet/tcp.h>
+//#include <netinet/tcp.h>
+#include <netinet/udp.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
@@ -59,14 +60,15 @@ struct PAYLOAD
   char signature[0x10];
   char mac[0x10];
   char username[0x10];
-  char password[0x10];
-  char reserved[0x40];
+  char password[0x21];
+  char reserved[0x2F];
 } payload;
 
 void usage(char * progname)
 {
-  printf("\nVersion:0.3, 2012/10/08\n");
-  printf("Usage:\n%s <host ip> <host mac> <user name> <password>\n\n",progname);
+  printf("\nVersion: 0.4, 2015/02/12\n");
+  printf("Modified to work with newer Negear routers R7000 R7500 by insanid\n");
+  printf("\nUsage:\n%s <host ip> <host mac> <user name> <password>\n\n",progname);
   exit(-1);
 }
 
@@ -82,8 +84,8 @@ int socket_connect(char *host, in_port_t port){
   bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
   addr.sin_port = htons(port);
   addr.sin_family = AF_INET;
-  sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-  setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (const char *)&on, sizeof(int));
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+  setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&on, sizeof(int));
   if(sock == -1){
     perror("setsockopt");
     exit(1);
@@ -185,6 +187,9 @@ int main(int argc, char * argv[])
   int sock = socket_connect(argv[1],PORT);
   write(sock, output_buf, datasize);
   close(sock);
+
+  printf("\nPayload has been sent to Netgear router.\n");
+  printf("Telnet should be enabled.\n\n");
 
   return 0;
 }
