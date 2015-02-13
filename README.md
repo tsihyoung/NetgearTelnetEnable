@@ -9,7 +9,7 @@ Should enable telnet on other Netgear routers that accept payload over UDP
 
 Binaries:
 Binaries are available for Linux x86-64. They are located in the binaries section of this github repository:
-https://github.com/insanid/NetgearTelnetEnable/binaries
+https://github.com/insanid/NetgearTelnetEnable/tree/master/binaries/linux-x86_64
 
 Linux Users:
 Download binary
