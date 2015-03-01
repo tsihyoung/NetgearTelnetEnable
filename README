@@ -1,5 +1,6 @@
 NetgearTelnetEnable
 Modified to work with newer Netgear routers R7000 R7500 by insanid
+Windows telnetenable-win.c and binary by LuKePicci
 ==================================================================
 Based on https://github.com/davejagoda/NetgearTelnetEnable
 For more information: http://wiki.openwrt.org/toh/netgear/telnet.console
@@ -8,18 +9,23 @@ Enables telnet access with newer Netgear routers R7000 and R7500
 Should enable telnet on other Netgear routers that accept payload over UDP
 
 Binaries:
-Binaries are available for Linux x86-64. They are located in the binaries section of this github repository:
-https://github.com/insanid/NetgearTelnetEnable/tree/master/binaries/linux-x86_64
+Binaries are available for Linux x86-64 and Windows. They are located in the binaries section of this github repository:
+https://github.com/insanid/NetgearTelnetEnable/tree/master/binaries/
 
 Linux Users:
 Download binary
 chmod a+x telnetenable
+Refer to usage instructions below.
 
 Windows Users:
-Windows binaries coming soon!
+Download telnetenable.exe
+Refer to usage instructions below.
 
-Usage:
+Linux Usage:
 ./telnetenable <IP> <MAC> <Username> <Password>
+
+Windows Usage:
+telnetenable.exe <IP> <MAC> <Username> <Password>
 
 IP - The IP of your Netgear device, usually 192.168.1.1
 
