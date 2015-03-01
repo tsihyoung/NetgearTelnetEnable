@@ -70,7 +70,7 @@ struct PAYLOAD
 
 void usage(char * progname)
 {
-  printf("\nVersion: 0.4, 2015/02/12\n");
+  printf("\nVersion: 0.5, 2015/03/01\n");
   printf("Modified to work with newer Negear routers R7000 R7500 by insanid\n");
   printf("\nUsage:\n%s <host ip> <host mac> <user name> <password>\n\n",progname);
   exit(-1);
